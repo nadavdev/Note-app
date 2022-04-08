@@ -34,8 +34,32 @@ const createNoteView = (note) => {
   noteDiv.append(textDiv);
   noteDiv.append(editButton);
   noteDiv.append(deleteButton);
+
+  deleteButton.onclick = () => deleteNote(noteDiv);
   return noteDiv;
 };
+
+const saveNote = () => {
+    const titleInput = document.querySelector('input#title');
+    const bodyInput = document.querySelector('input#body');
+    const bgColorInput = document.querySelector('select');
+    const id = new Date().getTime();
+    const note = {
+        id, title:titleInput, body:bodyInput, bgColor:bgColorInput
+    }
+    const noteDiv = createNoteView(note);
+    notesDiv.prepend(noteDiv);
+    titleInput.value = '';
+    bodyInput.value = '';
+    bgColorInput.value = '';
+}
+
+const deleteNote = (noteDiv) => {
+    noteDiv.remove();
+    notes = notes.filter(note => note.id != noteDiv.id);
+}
+
+document.querySelector('button.add').onclick = () => saveNote();
 
 const notesDiv = document.querySelector(".notesDiv");
 
