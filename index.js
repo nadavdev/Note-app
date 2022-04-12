@@ -89,7 +89,7 @@ const saveNote = () => {
     const bgColorInput = document.querySelector('select');
     const id = new Date().getTime();
     const note = {
-        id, title:titleInput, body:bodyInput, bgColor:bgColorInput
+        id, title:titleInput.value, body:bodyInput.value, bgColor:bgColorInput
     }
     const noteDiv = createNoteView(note);
     notesDiv.prepend(noteDiv);
